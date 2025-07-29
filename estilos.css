@@ -1,62 +1,77 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background: #fff;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #ffffff;
   margin: 0;
   padding: 20px;
 }
+
 header h1 {
   text-align: center;
   color: #b097cf;
   font-size: 2.5em;
   margin-bottom: 30px;
 }
+
 .año {
   background-color: #f5f5dc;
-  margin-bottom: 30px;
-  padding: 20px;
   border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
 .titulo-año {
   color: #b097cf;
   font-size: 1.8em;
-  margin-bottom: 15px;
-  position: relative;
+  margin-bottom: 20px;
 }
+
 .semestres {
   display: flex;
+  flex-wrap: wrap;
   gap: 20px;
 }
+
 .semestre {
   flex: 1;
+  min-width: 300px;
 }
+
 .semestre h3 {
   color: #b097cf;
   font-size: 1.3em;
   margin-bottom: 10px;
 }
+
 .asignaturas {
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
+
 .asignatura {
   background-color: #ffc4cd;
   color: #333;
   padding: 12px;
   border-radius: 8px;
   cursor: pointer;
+  user-select: none;
   opacity: 1;
   transform: translateY(0);
   animation: entrada 0.5s ease forwards;
+  transition: background-color 0.3s, opacity 0.3s;
 }
-.asignatura.bloqueada {
-  opacity: 0.4;
-  pointer-events: none;
-}
+
 .asignatura.aprobada {
   background-color: #cbdaa1;
   text-decoration: line-through;
 }
+
+.asignatura.bloqueada {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
 @keyframes entrada {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
