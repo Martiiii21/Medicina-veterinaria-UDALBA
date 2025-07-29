@@ -1,91 +1,75 @@
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fff;
   margin: 0;
   padding: 20px;
 }
 
-.titulo {
-  text-align: center;
+h1 {
   color: #b097cf;
-  font-size: 2.5em;
-  margin-bottom: 30px;
-  animation: fadeInDown 1s ease-in-out;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
-.malla {
+.malla-curricular {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 
 .anio {
   background-color: #f5f5dc;
-  padding: 15px;
-  border-radius: 15px;
-  animation: fadeInUp 1s ease;
+  padding: 20px;
+  border-radius: 16px;
 }
 
-.anio h2 {
+.titulo-anio {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
   color: #b097cf;
-  text-align: center;
-  margin-bottom: 15px;
 }
 
-.semestres {
+.fila-semestres {
   display: flex;
   justify-content: space-between;
-  gap: 10px;
+  gap: 20px;
   flex-wrap: wrap;
 }
 
 .semestre {
   flex: 1;
-  min-width: 200px;
+  min-width: 45%;
 }
 
 .semestre h3 {
-  color: #b097cf;
   margin-bottom: 10px;
-  font-size: 1.1em;
+  color: #b097cf;
+}
+
+.asignaturas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .asignatura {
   background-color: #ffc4cd;
-  padding: 8px 10px;
-  margin: 6px 0;
+  padding: 10px 14px;
   border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: 0.3s;
   user-select: none;
-  animation: fadeIn 0.5s ease;
+  font-weight: 500;
+  color: #333;
+  opacity: 0.6;
 }
 
-.asignatura:hover {
-  opacity: 0.85;
+.asignatura.aprobada {
+  background-color: #cbdaa1;
+  opacity: 1;
 }
 
-.aprobada {
-  background-color: #cbdaa1 !important;
-}
-
-.bloqueada {
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
-}
-
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
+.asignatura.desbloqueada {
+  opacity: 1;
 }
