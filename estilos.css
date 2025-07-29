@@ -9,19 +9,24 @@ h1 {
   text-align: center;
   color: #b097cf;
   margin-bottom: 40px;
+  font-size: 2.5rem;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .year {
   background-color: #f5f5dc;
   padding: 20px;
   margin-bottom: 20px;
-  border-radius: 10px;
+  border-radius: 16px;
+  animation: fadeInUp 0.8s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .year h2 {
   color: #b097cf;
   margin-bottom: 20px;
   text-align: center;
+  font-size: 1.8rem;
 }
 
 .semesters {
@@ -34,23 +39,37 @@ h1 {
 .semester {
   flex: 1;
   min-width: 300px;
+  transition: transform 0.3s ease;
+}
+
+.semester:hover {
+  transform: scale(1.02);
 }
 
 .semester h3 {
   color: #b097cf;
   text-align: center;
   margin-bottom: 10px;
+  font-size: 1.3rem;
 }
 
 .subject {
   background-color: #ffc4cd;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 5px;
+  border-radius: 12px;
+  padding: 12px;
+  margin: 6px;
   text-align: center;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+  font-weight: bold;
+  font-size: 0.95rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.subject:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
 .subject.approved {
@@ -60,4 +79,14 @@ h1 {
 .subject.locked {
   opacity: 0.4;
   pointer-events: none;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
