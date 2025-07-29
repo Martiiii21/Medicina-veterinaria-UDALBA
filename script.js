@@ -6,12 +6,12 @@ const malla = [
       {
         nombre: "1° semestre",
         ramos: [
-          { nombre: "Química general", abre: ["Química orgánica y bioquímica"] },
-          { nombre: "Biología", abre: ["Histología y embriología"] },
-          { nombre: "Zoología", abre: ["Ecología"] },
+          { nombre: "Química general", abre: ["Química orgánica y bioquímica"] , desbloqueado: true },
+          { nombre: "Biología", abre: ["Histología y embriología"] , desbloqueado: true },
+          { nombre: "Zoología", abre: ["Ecología"] }, desbloqueado: true },
           { nombre: "Introducción a la medicina veterinaria" },
           { nombre: "Tecnología e innovación" },
-          { nombre: "Práctica I", abre: ["Práctica II"] }
+          { nombre: "Práctica I", abre: ["Práctica II"], desbloqueado: true },
         ]
       },
       {
@@ -169,9 +169,10 @@ function crearMalla() {
         divRamo.textContent = ramo.nombre;
         divRamo.dataset.nombre = ramo.nombre;
 
-        if (!ramo.abre || ramo.abre.length === 0) {
-          divRamo.classList.remove("bloqueada");
-        }
+       if (ramo.desbloqueado || !ramo.abre || ramo.abre.length === 0) {
+  divRamo.classList.remove("bloqueada");
+}
+
 
         divRamo.addEventListener("click", () => {
           if (!divRamo.classList.contains("bloqueada")) {
