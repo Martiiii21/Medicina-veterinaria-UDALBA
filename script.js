@@ -1,182 +1,387 @@
-const asignaturas = {
-  "quimica-general": { nombre: "Química general", requisitos: [] },
-  "biologia": { nombre: "Biología", requisitos: [] },
-  "zoologia": { nombre: "Zoología", requisitos: [] },
-  "introduccion": { nombre: "Introducción a la medicina veterinaria", requisitos: [] },
-  "tecnologia": { nombre: "Tecnología e innovación", requisitos: [] },
-  "practica-i": { nombre: "Práctica I", requisitos: [] },
-
-  "quimica-organica": { nombre: "Química orgánica y bioquímica", requisitos: ["quimica-general"] },
-  "histologia": { nombre: "Histología y embriología", requisitos: ["biologia"] },
-  "estadistica": { nombre: "Estadística", requisitos: [] },
-  "ecologia": { nombre: "Ecología", requisitos: ["zoologia"] },
-  "ingles-basico": { nombre: "Inglés básico", requisitos: [] },
-  "practica-ii": { nombre: "Práctica II", requisitos: ["practica-i"] },
-
-  "anatomia-i": { nombre: "Anatomía I", requisitos: ["histologia"] },
-  "fisiologia": { nombre: "Fisiología veterinaria", requisitos: ["histologia"] },
-  "etologia": { nombre: "Etología y bienestar animal", requisitos: [] },
-  "gestion": { nombre: "Gestión ambiental y conservación", requisitos: ["ecologia"] },
-  "practica-iii": { nombre: "Práctica III", requisitos: ["practica-ii"] },
-
-  "anatomia-ii": { nombre: "Anatomía II", requisitos: ["anatomia-i"] },
-  "fisiologia-especial": { nombre: "Fisiología especial", requisitos: ["fisiologia"] },
-  "interaccion": { nombre: "Interacción hospedero patógeno", requisitos: ["fisiologia"] },
-  "modulo-inicial": {
+const asignaturas = [
+  {
+    nombre: "Química general",
+    semestre: "1",
+    año: "Primer año",
+    requisitos: []
+  },
+  {
+    nombre: "Biología",
+    semestre: "1",
+    año: "Primer año",
+    requisitos: []
+  },
+  {
+    nombre: "Zoología",
+    semestre: "1",
+    año: "Primer año",
+    requisitos: []
+  },
+  {
+    nombre: "Introducción a la medicina veterinaria",
+    semestre: "1",
+    año: "Primer año",
+    requisitos: []
+  },
+  {
+    nombre: "Tecnología e innovación",
+    semestre: "1",
+    año: "Primer año",
+    requisitos: []
+  },
+  {
+    nombre: "Práctica I",
+    semestre: "1",
+    año: "Primer año",
+    requisitos: []
+  },
+  {
+    nombre: "Química orgánica y bioquímica",
+    semestre: "2",
+    año: "Primer año",
+    requisitos: ["Química general"]
+  },
+  {
+    nombre: "Histología y embriología",
+    semestre: "2",
+    año: "Primer año",
+    requisitos: ["Biología"]
+  },
+  {
+    nombre: "Estadística",
+    semestre: "2",
+    año: "Primer año",
+    requisitos: []
+  },
+  {
+    nombre: "Ecología",
+    semestre: "2",
+    año: "Primer año",
+    requisitos: ["Zoología"]
+  },
+  {
+    nombre: "Inglés básico",
+    semestre: "2",
+    año: "Primer año",
+    requisitos: []
+  },
+  {
+    nombre: "Práctica II",
+    semestre: "2",
+    año: "Primer año",
+    requisitos: ["Práctica I"]
+  },
+  {
+    nombre: "Anatomía I",
+    semestre: "3",
+    año: "Segundo año",
+    requisitos: ["Histología y embriología"]
+  },
+  {
+    nombre: "Fisiología veterinaria",
+    semestre: "3",
+    año: "Segundo año",
+    requisitos: ["Histología y embriología"]
+  },
+  {
+    nombre: "Etología y bienestar animal",
+    semestre: "3",
+    año: "Segundo año",
+    requisitos: []
+  },
+  {
+    nombre: "Gestión ambiental y conservación",
+    semestre: "3",
+    año: "Segundo año",
+    requisitos: ["Ecología"]
+  },
+  {
+    nombre: "Práctica III",
+    semestre: "3",
+    año: "Segundo año",
+    requisitos: ["Práctica II"]
+  },
+  {
+    nombre: "Anatomía II",
+    semestre: "4",
+    año: "Segundo año",
+    requisitos: ["Anatomía I"]
+  },
+  {
+    nombre: "Fisiología especial",
+    semestre: "4",
+    año: "Segundo año",
+    requisitos: ["Fisiología veterinaria"]
+  },
+  {
+    nombre: "Interacción hospedero patógeno",
+    semestre: "4",
+    año: "Segundo año",
+    requisitos: ["Fisiología veterinaria"]
+  },
+  {
     nombre: "Módulo integrador ciclo inicial",
-    requisitos: ["etologia", "gestion", "practica-iii"]
+    semestre: "4",
+    año: "Segundo año",
+    requisitos: ["Etología y bienestar animal", "Gestión ambiental y conservación", "Práctica III"]
   },
-  "etica": { nombre: "Principios éticos veterinarios", requisitos: [] },
-  "genetica": { nombre: "Genética pecuaria", requisitos: [] },
-
-  "alimentacion": { nombre: "Alimentación y nutrición animal", requisitos: ["fisiologia-especial"] },
-  "patologia-funcional": { nombre: "Patología funcional", requisitos: ["fisiologia-especial"] },
-  "inspeccion": { nombre: "Inspección y control de alimentos", requisitos: ["interaccion"] },
-  "epidemiologia": { nombre: "Epidemiología", requisitos: ["interaccion"] },
-  "sostenible": { nombre: "Desarrollo sostenible", requisitos: [] },
-  "practica-iv": { nombre: "Práctica IV", requisitos: ["modulo-inicial"] },
-
-  "farmacologia": { nombre: "Farmacología y terapéutica", requisitos: [] },
-  "semiologia": { nombre: "Semiología", requisitos: [] },
-  "hematologia": { nombre: "Hematología y laboratorio clínico", requisitos: ["fisiologia-especial"] },
-  "patologia-especial": { nombre: "Patología especial", requisitos: ["patologia-funcional"] },
-  "ingles-tecnico": { nombre: "Inglés técnico", requisitos: [] },
-  "practica-v": { nombre: "Práctica V", requisitos: ["practica-iv"] },
-
-  "produccion-i": { nombre: "Producción animal I", requisitos: ["alimentacion"] },
-  "enfermedades": { nombre: "Enfermedades infecciosas y parasitarias", requisitos: ["patologia-especial"] },
-  "ginecologia": { nombre: "Ginecología y obstetricia", requisitos: ["semiologia"] },
-  "metodologia": { nombre: "Metodología de la investigación", requisitos: [] },
-  "responsabilidad": { nombre: "Responsabilidad social y emprendimiento", requisitos: [] },
-  "practica-vi": { nombre: "Práctica VI", requisitos: ["practica-v"] },
-
-  "produccion-ii": { nombre: "Producción animal II", requisitos: ["produccion-i"] },
-  "medicina-interna": { nombre: "Medicina interna", requisitos: ["enfermedades"] },
-  "cirugia": { nombre: "Cirugía General", requisitos: ["farmacologia"] },
-  "salud-publica": { nombre: "Salud pública", requisitos: ["epidemiologia"] },
-  "modulo-intermedio": {
+  {
+    nombre: "Principios éticos veterinarios",
+    semestre: "4",
+    año: "Segundo año",
+    requisitos: []
+  },
+  {
+    nombre: "Genética pecuaria",
+    semestre: "4",
+    año: "Segundo año",
+    requisitos: []
+  },
+  {
+    nombre: "Alimentación y nutrición animal",
+    semestre: "5",
+    año: "Tercer año",
+    requisitos: ["Fisiología especial"]
+  },
+  {
+    nombre: "Patología funcional",
+    semestre: "5",
+    año: "Tercer año",
+    requisitos: ["Fisiología especial"]
+  },
+  {
+    nombre: "Inspección y control de alimentos",
+    semestre: "5",
+    año: "Tercer año",
+    requisitos: ["Interacción hospedero patógeno"]
+  },
+  {
+    nombre: "Epidemiología",
+    semestre: "5",
+    año: "Tercer año",
+    requisitos: ["Interacción hospedero patógeno"]
+  },
+  {
+    nombre: "Desarrollo sostenible",
+    semestre: "5",
+    año: "Tercer año",
+    requisitos: []
+  },
+  {
+    nombre: "Práctica IV",
+    semestre: "5",
+    año: "Tercer año",
+    requisitos: ["Módulo integrador ciclo inicial"]
+  },
+  {
+    nombre: "Farmacología y terapéutica",
+    semestre: "6",
+    año: "Tercer año",
+    requisitos: []
+  },
+  {
+    nombre: "Semiología",
+    semestre: "6",
+    año: "Tercer año",
+    requisitos: []
+  },
+  {
+    nombre: "Hematología y laboratorio clínico",
+    semestre: "6",
+    año: "Tercer año",
+    requisitos: ["Fisiología especial"]
+  },
+  {
+    nombre: "Patología especial",
+    semestre: "6",
+    año: "Tercer año",
+    requisitos: ["Patología funcional"]
+  },
+  {
+    nombre: "Inglés técnico",
+    semestre: "6",
+    año: "Tercer año",
+    requisitos: []
+  },
+  {
+    nombre: "Práctica V",
+    semestre: "6",
+    año: "Tercer año",
+    requisitos: ["Práctica IV"]
+  },
+  {
+    nombre: "Producción animal I",
+    semestre: "7",
+    año: "Cuarto año",
+    requisitos: ["Alimentación y nutrición animal"]
+  },
+  {
+    nombre: "Enfermedades infecciosas y parasitarias",
+    semestre: "7",
+    año: "Cuarto año",
+    requisitos: ["Patología especial"]
+  },
+  {
+    nombre: "Ginecología y obstetricia",
+    semestre: "7",
+    año: "Cuarto año",
+    requisitos: ["Semiología"]
+  },
+  {
+    nombre: "Metodología de la investigación",
+    semestre: "7",
+    año: "Cuarto año",
+    requisitos: []
+  },
+  {
+    nombre: "Responsabilidad social y emprendimiento",
+    semestre: "7",
+    año: "Cuarto año",
+    requisitos: []
+  },
+  {
+    nombre: "Práctica VI",
+    semestre: "7",
+    año: "Cuarto año",
+    requisitos: ["Práctica V"]
+  },
+  {
+    nombre: "Producción animal II",
+    semestre: "8",
+    año: "Cuarto año",
+    requisitos: ["Producción animal I"]
+  },
+  {
+    nombre: "Medicina interna",
+    semestre: "8",
+    año: "Cuarto año",
+    requisitos: ["Enfermedades infecciosas y parasitarias"]
+  },
+  {
+    nombre: "Cirugía General",
+    semestre: "8",
+    año: "Cuarto año",
+    requisitos: ["Farmacología y terapéutica"]
+  },
+  {
+    nombre: "Salud pública",
+    semestre: "8",
+    año: "Cuarto año",
+    requisitos: ["Epidemiología"]
+  },
+  {
     nombre: "Módulo integrador ciclo intermedio",
-    requisitos: ["produccion-i", "practica-vi"]
+    semestre: "8",
+    año: "Cuarto año",
+    requisitos: ["Producción animal I", "Práctica VI"]
   },
-  "vida-laboral": { nombre: "Preparación para la vida laboral", requisitos: [] },
-
-  "tecnicas": { nombre: "Técnicas quirúrgicas", requisitos: ["cirugia"] },
-  "imagenologia": { nombre: "Imagenologia", requisitos: ["medicina-interna"] },
-  "clinica-mayores": {
+  {
+    nombre: "Preparación para la vida laboral",
+    semestre: "8",
+    año: "Cuarto año",
+    requisitos: []
+  },
+  {
+    nombre: "Técnicas quirúrgicas",
+    semestre: "9",
+    año: "Quinto año",
+    requisitos: ["Cirugía General"]
+  },
+  {
+    nombre: "Imagenologia",
+    semestre: "9",
+    año: "Quinto año",
+    requisitos: []
+  },
+  {
     nombre: "Clínica de animal mayores",
-    requisitos: ["medicina-interna"]
+    semestre: "9",
+    año: "Quinto año",
+    requisitos: ["Medicina interna"]
   },
-  "economia": {
+  {
     nombre: "Economía y administración de empresas veterinarias",
+    semestre: "9",
+    año: "Quinto año",
     requisitos: []
   },
-  "clinica-menores": {
+  {
     nombre: "Clínica de animales menores",
-    requisitos: ["medicina-interna"]
+    semestre: "9",
+    año: "Quinto año",
+    requisitos: ["Medicina interna"]
   },
-  "electivo-i": { nombre: "Electivo de especialidad I", requisitos: [] },
-
-  "modulo-profesional": {
-    nombre: "Módulo integrador profesional",
-    requisitos: ["clinica-menores", "clinica-mayores"]
-  },
-  "evaluacion": {
-    nombre: "Evaluación de proyectos",
-    requisitos: ["economia"]
-  },
-  "legislacion": {
-    nombre: "Salud laboral y legislación veterinaria",
+  {
+    nombre: "Electivo de especialidad I",
+    semestre: "9",
+    año: "Quinto año",
     requisitos: []
   },
-  "electivo-ii": { nombre: "Electivo de especialidad II", requisitos: [] },
-};
-
-const estructura = [
   {
-    anio: "Primer año",
-    semestres: [
-      ["quimica-general", "biologia", "zoologia", "introduccion", "tecnologia", "practica-i"],
-      ["quimica-organica", "histologia", "estadistica", "ecologia", "ingles-basico", "practica-ii"],
-    ],
+    nombre: "Módulo integrador profesional",
+    semestre: "10",
+    año: "Quinto año",
+    requisitos: ["Clínica de animal mayores", "Clínica de animales menores"]
   },
   {
-    anio: "Segundo año",
-    semestres: [
-      ["anatomia-i", "fisiologia", "etologia", "gestion", "practica-iii"],
-      ["anatomia-ii", "fisiologia-especial", "interaccion", "modulo-inicial", "etica", "genetica"],
-    ],
+    nombre: "Evaluación de proyectos",
+    semestre: "10",
+    año: "Quinto año",
+    requisitos: ["Economía y administración de empresas veterinarias"]
   },
   {
-    anio: "Tercer año",
-    semestres: [
-      ["alimentacion", "patologia-funcional", "inspeccion", "epidemiologia", "sostenible", "practica-iv"],
-      ["farmacologia", "semiologia", "hematologia", "patologia-especial", "ingles-tecnico", "practica-v"],
-    ],
+    nombre: "Salud laboral y legislación veterinaria",
+    semestre: "10",
+    año: "Quinto año",
+    requisitos: []
   },
   {
-    anio: "Cuarto año",
-    semestres: [
-      ["produccion-i", "enfermedades", "ginecologia", "metodologia", "responsabilidad", "practica-vi"],
-      ["produccion-ii", "medicina-interna", "cirugia", "salud-publica", "modulo-intermedio", "vida-laboral"],
-    ],
-  },
-  {
-    anio: "Quinto año",
-    semestres: [
-      ["tecnicas", "imagenologia", "clinica-mayores", "economia", "clinica-menores", "electivo-i"],
-      ["modulo-profesional", "evaluacion", "legislacion", "electivo-ii"],
-    ],
-  },
+    nombre: "Electivo de especialidad II",
+    semestre: "10",
+    año: "Quinto año",
+    requisitos: []
+  }
 ];
 
-let aprobadas = new Set();
+const malla = document.getElementById("malla");
 
-function render() {
-  const contenedor = document.getElementById("malla");
-  contenedor.innerHTML = "";
+function renderMalla() {
+  const años = [...new Set(asignaturas.map(a => a.año))];
+  malla.innerHTML = "";
 
-  estructura.forEach(({ anio, semestres }) => {
-    const divAnio = document.createElement("div");
-    divAnio.className = "anio";
-    divAnio.innerHTML = `<div class="titulo-anio">${anio}</div><div class="fila-semestres"></div>`;
-    const fila = divAnio.querySelector(".fila-semestres");
+  años.forEach(año => {
+    const contenedorAño = document.createElement("div");
+    contenedorAño.className = "año";
+    contenedorAño.innerHTML = `<h2>${año}</h2><div class="semestres"><div class="semestre" id="${año}-1"><h3>1 Semestre</h3></div><div class="semestre" id="${año}-2"><h3>2 Semestre</h3></div></div>`;
+    malla.appendChild(contenedorAño);
+  });
 
-    semestres.forEach((asigs, idx) => {
-      const divSemestre = document.createElement("div");
-      divSemestre.className = "semestre";
-      divSemestre.innerHTML = `<h3>${idx + 1}° semestre</h3><div class="asignaturas"></div>`;
-      const lista = divSemestre.querySelector(".asignaturas");
+  asignaturas.forEach(asig => {
+    const el = document.createElement("div");
+    el.className = "asignatura";
+    el.innerText = asig.nombre;
 
-      asigs.forEach(id => {
-        const { nombre, requisitos } = asignaturas[id];
-        const div = document.createElement("div");
-        div.textContent = nombre;
-        div.className = "asignatura";
-        div.dataset.id = id;
+    if (!asig.requisitos.length || asig.requisitos.every(r => localStorage.getItem(r) === "true")) {
+      el.classList.remove("bloqueada");
+    } else {
+      el.classList.add("bloqueada");
+    }
 
-        const desbloqueada = requisitos.every(req => aprobadas.has(req));
-        if (desbloqueada || requisitos.length === 0) div.classList.add("desbloqueada");
-        if (aprobadas.has(id)) div.classList.add("aprobada");
+    if (localStorage.getItem(asig.nombre) === "true") {
+      el.classList.add("aprobada");
+    }
 
-        if (desbloqueada || requisitos.length === 0) {
-          div.addEventListener("click", () => {
-            if (aprobadas.has(id)) {
-              aprobadas.delete(id);
-            } else {
-              aprobadas.add(id);
-            }
-            render();
-          });
-        }
+    el.addEventListener("click", () => {
+      if (el.classList.contains("bloqueada")) return;
 
-        lista.appendChild(div);
-      });
+      const aprobada = el.classList.toggle("aprobada");
+      localStorage.setItem(asig.nombre, aprobada);
 
-      fila.appendChild(divSemestre);
+      renderMalla();
     });
 
-    contenedor.appendChild(divAnio);
+    document.getElementById(`${asig.año}-${asig.semestre}`).appendChild(el);
   });
 }
 
-render();
+renderMalla();
