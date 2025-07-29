@@ -1,75 +1,63 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: Arial, sans-serif;
   background-color: #fff;
   margin: 0;
   padding: 20px;
 }
 
 h1 {
-  color: #b097cf;
   text-align: center;
+  color: #b097cf;
   margin-bottom: 40px;
 }
 
-.malla-curricular {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.anio {
+.year {
   background-color: #f5f5dc;
   padding: 20px;
-  border-radius: 16px;
-}
-
-.titulo-anio {
-  font-size: 1.5rem;
-  font-weight: bold;
   margin-bottom: 20px;
-  color: #b097cf;
+  border-radius: 10px;
 }
 
-.fila-semestres {
+.year h2 {
+  color: #b097cf;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.semesters {
   display: flex;
-  justify-content: space-between;
   gap: 20px;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 
-.semestre {
+.semester {
   flex: 1;
-  min-width: 45%;
+  min-width: 300px;
 }
 
-.semestre h3 {
-  margin-bottom: 10px;
+.semester h3 {
   color: #b097cf;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-.asignaturas {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.asignatura {
+.subject {
   background-color: #ffc4cd;
-  padding: 10px 14px;
-  border-radius: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
   cursor: pointer;
-  transition: 0.3s;
-  user-select: none;
-  font-weight: 500;
-  color: #333;
-  opacity: 0.6;
+  transition: background-color 0.3s;
 }
 
-.asignatura.aprobada {
-  background-color: #cbdaa1;
-  opacity: 1;
+.subject.approved {
+  background-color: #cbdaa1 !important;
 }
 
-.asignatura.desbloqueada {
-  opacity: 1;
+.subject.locked {
+  opacity: 0.4;
+  pointer-events: none;
 }
